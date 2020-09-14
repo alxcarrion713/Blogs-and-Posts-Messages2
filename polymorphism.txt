@@ -1,0 +1,12 @@
+1.  Create a new model for comments
+	
+	rails g model Comment user:references comment:text table:references
+	-Changed the Comment migration file to include "polymorphic: true"
+	-Added "has_many :comments, as: :table" to each model that would have comments
+	rake db:migrate
+
+2.  Tested out each to see if I could add comments to them
+
+	Comment.create(user:User.first, comment:"This is the first comment ever", table:Blog.find(2))
+	...
+	Working for all!  Shows the table_id and table_type!
